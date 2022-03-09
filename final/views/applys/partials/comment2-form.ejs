@@ -1,0 +1,23 @@
+  <fieldset <%= !isAuthenticated?'disabled':'' %>>
+    <div class="row">
+      <div class="col-7">
+        <% if(comment2.id){ %>
+          <form action="/comments2/edit/<%= data.RNO %>/<%=comment2.CNO%>" class="form-inline" method="post">
+              <input type="text" id="text" name="text" class="form-control"><br><br>
+              <button type="submit" class="btnr">수정</button>
+          </form>
+        <% } else { %>
+          <form action="/applys/show/<%=data.RNO%>" class="form-inline" method="post">
+            <div class="row">
+              <div class="col-5">
+                <input type="text" id="content" name="content" class="form-control">
+              </div>
+              <div class="col-7">
+                <button type="submit" class="btnr">확인</button>
+              </div>
+            </div>
+          </form>
+        <% } %>
+      </div>
+    </div>
+  </fieldset>

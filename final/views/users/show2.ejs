@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr">
+<!DOCTYPE html>
+
+<head>
+  <%- include('../partials/head') %>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <meta charset="utf-8">
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5hcY4FxXB__XhaIybVMdfnvf6ti9IYxE&callback=initMap"></script>
+
+  <style>
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    #floating-panel {
+      position: absolute;
+      top: 10px;
+      z-index: 5;
+      background-color: #fff;
+      padding: 5px;
+      border: 1px solid #999;
+      text-align: center;
+      line-height: 30px;
+      padding-left: 10px;
+    }
+
+    .font_bold {
+      font-size: 17px;
+      font-weight: bold;
+    }
+
+    .head {
+      padding-top: 10px;
+      width: 1905px;
+      height: 250px;
+    }
+
+    .banner {
+      width: 1905px;
+      height: 250px;
+    }
+
+    .path {
+      position: absolute;
+      top: 255px;
+      background-color: rgba(33, 33, 33, 0.8);
+      width: 1905px;
+      height: 70px;
+    }
+
+    #path_text {
+      color: rgba(255, 255, 255, 0.7);
+      padding-top: 20px;
+      padding-left: 400px;
+      font-size: 20px;
+    }
+
+    .main {
+      padding-top: 30px;
+      width: 1900px;
+      padding-left: 730px;
+      height: 770px;
+      padding-right: 600px;
+    }
+    .card{
+      width: 470px;
+    }
+
+    #title {
+      color: #000;
+      font-size: 15px;
+    }
+
+    span {
+      padding-right: 5px;
+      color: #CC723D;
+    }
+    .can{
+      font-size: 17px;
+    }
+
+    #content_text2 {
+      padding-top: 30px;
+      padding-left: 80px;
+      font-size: 25px;
+    }
+.form-control{
+  font-size: 17px;
+
+}
+    }
+  </style>
+</head>
+
+<body>
+  <%- include('../partials/nav') %>
+
+
+  <div class="head">
+    <img class="banner" src="/img/head.png">
+    <div class="path">
+      <p id="path_text"><span class="glyphicon glyphicon-home"></span>
+        ＞ <%= data[0].id %>님의 회원 정보 </p>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="container mb-3">
+      <div class="card">
+        <p id="content_text2"><span class="glyphicon glyphicon-grain"></span> <%=data[0].id%>님의 회원 정보</p>
+        <div class="row" style="margin-left:70px">
+              <fieldset disabled>
+                <div class="form-group row">
+                <p class="can" for="title"><span class="glyphicon glyphicon-grain"></span>아이디</p>
+                <input class="form-control" type="text" id="name" name="name" value="<%= data[0].id %>">
+      </div>
+                  <div class="form-group row">
+                    <p class="can" for="email"><span class="glyphicon glyphicon-grain"></span>이메일</p>
+                      <input class="form-control" type="text" id="name" name="name" value="<%= data[0].email %>">
+                    </div>
+                      <div class="form-group row">
+                        <p class="can" for="birth"><span class="glyphicon glyphicon-grain"></span>생년월일</p>
+                          <input class="form-control" type="text" id="name" name="name" value="<%= data[0].birth %>">
+                        </div>
+                        <div class="form-group row">
+                          <p class="can" for="gender"><span class="glyphicon glyphicon-grain"></span>성별</p>
+                            <input class="form-control" type="text" id="name" name="name" value="<%= data[0].gender %>">
+                          </div>
+              </fieldset>
+          </div>
+          </div>
+        </div>
+      </div>
+
+
+  <%- include('../partials/footer') %>
+
+
+</body>
+
+</html>

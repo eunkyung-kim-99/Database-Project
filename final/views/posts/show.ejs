@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <%- include('../partials/head') %>
+</head>
+<style>
+  .head {
+    padding-top: 10px;
+    width: 1905px;
+    height: 250px;
+  }
+
+  .banner {
+    width: 1905px;
+    height: 250px;
+  }
+
+  .path {
+    position: absolute;
+    top: 255px;
+    background-color: rgba(33, 33, 33, 0.8);
+    width: 1905px;
+    height: 70px;
+  }
+
+  #path_text {
+    color: rgba(255, 255, 255, 0.7);
+    padding-top: 20px;
+    padding-left: 400px;
+    font-size: 20px;
+  }
+
+  .main {
+    padding-top: 30px;
+    width: 1900px;
+    padding-left: 350px;
+    height: 1170px;
+    padding-right: 300px;
+  }
+
+  #title {
+    color: #000;
+    font-size: 15px;
+  }
+
+  span {
+    padding-right: 5px;
+    color: #CC723D;
+  }
+
+  #content_text2 {
+    padding-top: 30px;
+    padding-left: 40px;
+    font-size: 30px;
+  }
+
+  .postcard {
+    position: absolute;
+    left: 833px;
+    top: 20px;
+    width: 250px;
+    font-size: 20px;
+  }
+
+  .btnback {
+    position: absolute;
+    top: 880px;
+    left: 440px;
+    width: 100px;
+    height: 50px;
+    background-color: #CC723D;
+    border: none;
+    text-align: center;
+    padding-top: 10px;
+    color: #fff;
+    font-size: 20px;
+  }
+
+  .btnback:hover {
+    color: #CC723D;
+    background-color: #fff;
+    text-decoration: none;
+    border: 3px solid #CC723D;
+  }
+
+  .btnd {
+    position: absolute;
+    padding-top: 10px;
+    text-align: center;
+    top: 880px;
+    left: 1405px;
+    width: 100px;
+    height: 50px;
+    background-color: #CC723D;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+  }
+
+  .btnd:hover {
+    text-decoration: none;
+    color: #CC723D;
+    background-color: #fff;
+    border: 3px solid #CC723D;
+  }
+
+  .btns {
+    position: absolute;
+    text-align: center;
+    padding-top: 10px;
+
+    top: 880px;
+    left: 1280px;
+    width: 100px;
+    height: 50px;
+    background-color: #CC723D;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+  }
+
+  .btns:hover {
+    text-decoration: none;
+
+    color: #CC723D;
+    background-color: #fff;
+    border: 3px solid #CC723D;
+  }
+
+  .pb {
+    height: 520px;
+  }
+
+  .con {
+    padding-top: 20px;
+    padding-left: 70px;
+    font-size: 20px;
+  }
+</style>
+</head>
+
+<body>
+  <%- include('../partials/nav') %>
+
+  <div class="head">
+    <img class="banner" src="/img/head.png">
+    <div class="path">
+      <p id="path_text"><span class="glyphicon glyphicon-home"></span>
+        ＞ Community ＞ 봉사 후기 ＞ <%= data.title %> </p>
+    </div>
+  </div>
+
+  <body>
+    <div class="main">
+      <div class="container mb-3">
+        <div class="card">
+          <p id="content_text2"><span class="glyphicon glyphicon-grain"></span> <%= data.title %></h5>
+          <div class="row">
+
+            <div class="pb">
+              <div class="post-body con" data-search-highlight="body"><%= data.content %></div>
+            </div>
+
+            <div class="postcard">
+              <div class="post-info card m-2 p-2">
+                <div class="border-bottom pb-1 mb-1">
+                  <div><span>아이디</span> : <span data-search-highlight="author"><%= data.author %></span></div>
+                </div>
+                <div><span>게시일</span> : <span data-date-time="<%= data.day %>"></span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-3">
+          <a class="btnback" href="/posts/index">목록</a>
+          <% if(currentUser.id == data.author){ %>
+          <a class="btns" href="/posts/edit/<%=data.MNO%>">수정</a>
+          <a class="btnd" href="/posts/delete/<%=data.MNO%>">삭제</a>
+          <% } %>
+        </div>
+
+
+        <!-- 댓글 시작 -->
+        <br><br>
+        <div class="container mb-3">
+          <h4 class="mt-3">
+            <span class="glyphicon glyphicon-envelope"></span> 댓글</h4>
+          <%- include('partials/comment-form',{
+            comment: {},
+          });%>
+          <% if(result.length) { %>
+          <% for(let rdata of result) { %>
+          <div class="mt-3 border-bottom">
+            <%- include('partials/comment-show', {
+                  data:data,  //작성자
+                  rdata: rdata, //댓글작성자
+                  session:currentUser.id, //로그인 사용자
+                }); %>
+          </div>
+          <% } %>
+          <% } %>
+
+        </div>
+
+        </div>
+      </div>
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+      <%- include('../partials/footer') %>
+
+  </body>
+
+</html>

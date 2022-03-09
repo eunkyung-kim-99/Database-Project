@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <%- include('../partials/head') %>
+</head>
+<style>
+  .head {
+    padding-top: 10px;
+    width: 1905px;
+    height: 250px;
+  }
+
+  .banner {
+    width: 1905px;
+    height: 250px;
+  }
+
+  .path {
+    position: absolute;
+    top: 255px;
+    background-color: rgba(33, 33, 33, 0.8);
+    width: 1905px;
+    height: 70px;
+  }
+
+  #path_text {
+    color: rgba(255, 255, 255, 0.7);
+    padding-top: 20px;
+    padding-left: 600px;
+    font-size: 20px;
+  }
+
+  .main {
+    width: 1900px;
+  padding-top: 30px;
+    padding-left: 600px;
+    height: 1110px;
+    padding-right: 300px;
+  }
+
+  .menu {
+    position: absolute;
+    top: 255px;
+    left: 280px;
+    height: 1170px;
+    width: 270px;
+    background-color: #fff;
+    border: 0.2px solid;
+    border-color: rgba(69, 69, 69, 0.2);
+  }
+
+  .menutitle {
+    padding-bottom: 27px;
+  }
+
+  .menubtn {
+    background-color: yellow;
+    height: 100px;
+    padding: 20px 121px;
+  }
+
+  #mini {
+    font-size: 30px;
+    padding-top: 80px;
+    padding-bottom: 20px;
+    text-align: center;
+  }
+
+  span {
+    padding-right: 5px;
+    color: #CC723D;
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 270px;
+    background-color: #E6E6E6;
+  }
+
+  li a {
+    font-size: 16px;
+    display: block;
+    color: #000;
+    padding: 20px 20px;
+    text-decoration: none;
+  }
+
+  li a:hover:not(.active) {
+    background-color: #CC723D;
+    color: white;
+    text-decoration: none;
+  }
+
+  .mb-3 {
+    padding-left: 30px;
+  }
+
+  .board-table {
+    font-size: 15px;
+    width: 1000px;
+  }
+  #content_text {
+    padding-top: 20px;
+    font-size: 25px;
+  }
+
+  .title-text {
+    font-size: 17px;
+  }
+
+  .title-ellipsis {
+    padding-left: 10px;
+  }
+
+  .col-2 {
+    position: absolute;
+    top: 480px;
+  }
+
+.form-control{
+  padding:25px;
+  font-size: 20px;
+}
+  .can{
+    padding-top: 30px;
+    font-size: 25px;
+  }
+  label {
+    display: block;
+  }
+  .btnr{
+    background-color:  #CC723D;
+    border:none;
+    color:#fff;
+    width: 50px;
+    height: 37px;
+    font-size: 10px;
+  }
+  .input-group-append{
+    padding-left: 20px;
+  }
+
+</style>
+
+<body>
+  <%- include('../partials/nav') %>
+
+  <div class="head">
+    <img class="banner" src="/img/head.png">
+    <div class="path">
+      <p id="path_text"><span class="glyphicon glyphicon-home"></span>
+        ＞ 회원관리</p>
+    </div>
+  </div>
+
+  <div class="main">
+
+
+    <table class="board-table table table-sm border-bottom">
+      <p id="content_text"><span class="glyphicon glyphicon-grain"></span>
+        회원 목록</p><br>
+        <colgroup>
+          <col width="10%" />
+          <col width="7%" />
+          <col width="5%" />
+          <col width="15%" />
+          <col width="10%" />
+          <col width="17%" />
+          <col width="13%" />
+          <col width="5%" />
+
+        </colgroup>
+
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">아이디</th>
+            <th scope="col" class="name">성명</th>
+            <th scope="col" class="gender">성별</th>
+            <th scope="col" class="address">주소</th>
+            <th scope="col" class="birth">생년월일</th>
+            <th scope="col" class="email">이메일</th>
+            <th scope="col" class="phone">전화번호</th>
+            <th scope="col">삭제</th>
+          </tr>
+        </thead>
+
+        <tbody>
+        <% for(let data of results) { %>
+          <tr>
+            <td>
+              <div>
+                      <div data-search-highlight="title" class="float-left">
+                        <span class="title-text"><%= data.id %></span>
+                      </div>
+              </div>
+            </td>
+            <td class="name">
+              <div>
+                    <div data-search-highlight="title" class="float-left">
+                      <span class="title-text"><%= data.name %></span>
+                    </div>
+              </div>
+            </td>
+
+            <td class="gender">
+              <div>
+                    <div data-search-highlight="title" class="float-left">
+                      <span class="title-text"><%= data.gender %></span>
+                    </div>
+              </div>
+            </td>
+
+            <td class="address">
+              <div>
+                    <div data-search-highlight="title" class="title-ellipsis ellipsis float-left">
+                      <span class="title-text"><%= data.address %></span>
+                    </div>
+              </div>
+            </td>
+
+            <td class="birth">
+              <div>
+                    <div data-search-highlight="title" class="float-left">
+                      <span class="title-text"><%= data.birth %></span>
+                    </div>
+             </div>
+            </td>
+            <td class="email">
+              <div>
+                    <div data-search-highlight="title" class="float-left">
+                      <span class="title-text"><%= data.email %></span>
+                    </div>
+              </div>
+            </td>
+
+            <td class="phone">
+                <div>
+                    <div data-search-highlight="title" class="float-left">
+                      <span class="title-text"><%= data.phone %></span>
+                    </div>
+                </div>
+            </td>
+            <td>
+              <div>
+                     <a href="/users/manage/<%= data.id %>" onclick="Userdelete();" class="title-container">
+                          <div data-search-highlight="title" class="float-left">
+                          <span class="title-text">X</span>
+                          </div>
+                    </a>
+              </div>
+            </td>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
+    <div class="form-group2">
+      <label>아이디 검색</label>
+      <form action="/users/search" method="post" class="form-inline">
+        <input minLength="1" class="searchText" float:"left" type="text" name="searchText">
+        <div class="input-group-append" float:"left">
+          <button class="btnr">검색</button>
+        </div>
+      </form>
+
+
+
+
+      </div>
+    </div>
+<div class="menu">
+  <div class="menutitle">
+    <p id="mini">회원관리</p>
+    <hr width="180px" style="border: solid 2px #CC723D">
+  </div>
+  <div id="side_left">
+    <ul><li>
+<a href="/users/manage">  ▶ 회원관리</a></li>
+
+    </ul>
+  </div>
+</div>
+
+  <%- include('../partials/footer') %>
+
+  <script>
+  function Userdelete(){
+  if (confirm("이 사용자를 삭제하시겠습니까??")){    //확인
+      document.form.submit();
+  }else{   //취소
+  }
+  }
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%- include('../partials/head') %>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <style>
+    .chart{
+      position: absolute;
+      left: 300px;
+      border: 1px solid orange;
+      float: left;
+      margin: 30px;
+    }
+    .head{
+      padding-top: 10px;
+
+    width: 1905px;
+    height: 250px;
+    }
+    .banner{
+    width: 1905px;
+    height: 250px;
+    }
+    .path{
+    position: absolute;
+    top:255px;
+    background-color: rgba(33,33,33,0.8);
+    width: 1905px;
+    height: 70px;
+    }
+
+    #path_text{
+    color: rgba(255,255,255,0.7);
+    padding-top: 20px;
+    padding-left: 600px;
+    font-size: 20px;
+    }
+    .main{
+    width: 1900px;
+    padding-left: 600px;
+    height: 970px;
+    padding-right: 300px;
+    }
+    .submain{
+      width: 1900px;
+      padding-left: 600px;
+      height: 490px;
+      padding-right: 300px;
+    }
+    #title{
+    padding-top: 50px;
+    color:#000;
+    font-size: 50px;
+    }
+.menutitle{
+  padding-bottom: 27px;
+}
+    .menu{
+    position: absolute;
+    top:255px;
+    left: 280px;
+    height: 1029px;
+    width: 270px;
+    background-color: #fff;
+    border: 0.2px solid;
+    border-color: rgba(69,69,69,0.2);
+    }
+
+    .menubtn{
+    background-color: yellow;
+    height: 100px;
+    padding: 20px 121px;
+    }
+    #mini{
+    font-size: 30px;
+    padding-top:80px;
+    padding-bottom: 20px;
+    text-align: center;
+    }
+    .side_lefta{
+      padding-top: 20px;
+    }
+    #icon{
+      padding-right: 5px;
+      color: #CC723D;
+    }
+ul {
+       list-style-type: none;
+       margin: 0;
+       padding: 0;
+       width: 270px;
+       background-color:#E6E6E6;
+     }
+     li a {
+       font-size: 16px;
+         display: block;
+         color: #000;
+         padding: 20px 20px;
+         text-decoration: none;
+     }
+
+     li a:hover:not(.active) {
+         background-color: #CC723D;
+         color: white;
+         text-decoration:none;
+     }
+
+.R_box, .R_box1, .R_box2, .R_box3,.R_box4,.R_box5,.U_box, .U_box1, .U_box2, .U_box3,.U_box4,.U_box5{
+    margin : 20px;
+    width: 16%;
+    float: left;
+    height: 150px;
+    display: flex;
+    border-radius : 35px;
+    border-style : none;
+}
+.R_box1{
+  background-color: #FE9A2E;
+}
+.R_box2{
+  background-color: #FAAC58;
+}
+.R_box3{
+  background-color:#F5D0A9
+}
+.R_box4{
+  background-color:#F6E3CE
+}
+.R_box5{
+  background-color:#F8ECE0
+}
+.U_box1{
+background-color: #FACC2E;
+}
+.U_box2{
+background-color: #F7D358;
+}
+.U_box3{
+background-color:#F3E2A9
+}
+.U_box4{
+  background-color:#F5ECCE
+}
+.U_box5{
+  background-color:#F7F2E0
+}
+.box_title{
+  text-align: left;
+  font-size: 17px !important;
+  margin-top: 35%;
+  padding-left : 10px;
+  font-weight: bold;
+}
+.box_day{
+  padding-top : 10px;
+  font-size: 11px !important;
+  color: Tomato !important;
+  font-weight: bold;
+}
+.box_cnt{
+  text-align: right !important;
+  font-size: 30px !important;
+  font-weight: bold;
+  margin-top: 55%;
+  padding-right : 7px;
+  color: #DF3A01 !important;
+}
+</style>
+</head>
+  <body>
+    <%- include('../partials/nav') %>
+
+
+    <div class="head">
+      <img class="banner" src="/img/head.png">
+      <div class="path"><p id="path_text"><span id="icon" class="glyphicon glyphicon-home"></span>
+          ＞ 공지 ＞ 사이트 현황</p></div>
+    </div>
+
+    <div class="submain">
+      <p id="title"><span id="icon" class="glyphicon glyphicon-grain"></span>게시물 등록 수</p>
+      <hr id="hrr">
+    <div class="content">
+        <div class="R_box1">
+          <h2 class="box_title">오늘</h2>
+          <% for(let data1 of result1) { %>
+              <span class="box_day" data-date="<%= data1.day %>"></span>
+              <span class="box_cnt"><%= data1.RNO_cnt %></span>
+          <% } %>
+        </div>
+        <div class="R_box2">
+          <h2 class="box_title">1일 전</h2>
+          <% for(let data2 of result2) { %>
+              <span class="box_day" data-date="<%= data2.day %>"></span>
+              <span class="box_cnt"><%= data2.RNO_cnt %></span>
+          <% } %>
+        </div>
+        <div class="R_box3">
+          <h2 class="box_title">2일 전</h2>
+          <% for(let data3 of result3) { %>
+              <span class="box_day" data-date="<%= data3.day %>"></span>
+              <span class="box_cnt"><%= data3.RNO_cnt %></span>
+          <% } %>
+        </div>
+        <div class="R_box4">
+          <h2 class="box_title">3일 전</h2>
+          <% for(let data4 of result4) { %>
+              <span class="box_day" data-date="<%= data4.day %>"></span>
+              <span class="box_cnt"><%= data4.RNO_cnt %></span>
+          <% } %>
+        </div>
+        <div class="R_box5">
+          <h2 class="box_title">4일 전</h2>
+          <% for(let data5 of result5) { %>
+              <span class="box_day" data-date="<%= data5.day %>"></span>
+              <span class="box_cnt"><%= data5.RNO_cnt %></span>
+          <% } %>
+        </div>
+    </div>
+    </div>
+
+    <div class="submain">
+      <p id="title"><span id="icon" class="glyphicon glyphicon-grain"></span>방문자 수</p>
+      <hr id="hrr">
+      <div class="content">
+          <div class="U_box1">
+            <h2 class="box_title">오늘</h2>
+            <% for(let data1 of result1) { %>
+                <span class="box_day" data-date="<%= data1.day %>"></span>
+                <span class="box_cnt"><%= data1.User_cnt %></span>
+            <% } %>
+          </div>
+          <div class="U_box2">
+            <h2 class="box_title">1일 전</h2>
+            <% for(let data2 of result2) { %>
+                <span class="box_day" data-date="<%= data2.day %>"></span>
+                <span class="box_cnt"><%= data2.User_cnt %></span>
+            <% } %>
+          </div>
+          <div class="U_box3">
+            <h2 class="box_title">2일 전</h2>
+            <% for(let data3 of result3) { %>
+                <span class="box_day" data-date="<%= data3.day %>"></span>
+                <span class="box_cnt"><%= data3.User_cnt %></span>
+            <% } %>
+          </div>
+          <div class="U_box4">
+            <h2 class="box_title">3일 전</h2>
+            <% for(let data4 of result4) { %>
+                <span class="box_day" data-date="<%= data4.day %>"></span>
+                <span class="box_cnt"><%= data4.User_cnt %></span>
+            <% } %>
+          </div>
+          <div class="U_box5">
+            <h2 class="box_title">4일 전</h2>
+            <% for(let data5 of result5) { %>
+                <span class="box_day" data-date="<%= data5.day %>"></span>
+                <span class="box_cnt"><%= data5.User_cnt %></span>
+            <% } %>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="menu">
+      <div class="menutitle">
+      <p id="mini">공지</p>
+      <hr width="180px" style="border: solid 2px #CC723D"></div>
+
+    <div id="side_left">
+      <ul>
+           <li><a href="/posts3/index">
+              ▶ 공지사항</a></li>
+           <li><a href="/posts4/index">
+               ▶ 사이트 현황</a></li>
+
+             </ul>
+    </div>
+  </div>
+
+    <%- include('../partials/footer') %>
+  </body>
+</html>

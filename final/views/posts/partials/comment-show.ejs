@@ -1,0 +1,37 @@
+<div class="border-top">
+  <div class="row pt-1 pb-1">
+    <% if(session == data.author){ %>
+    <a href="/users/<%= rdata.id %>" class="title-container">
+      <div class="col-3 col-md-2 col-lg-1 pl-4"><%= rdata.id %></div>
+    </a>
+    <% } else { %>
+    <div class="col-3 col-md-2 col-lg-1 pl-4"><%= rdata.id %></div>
+    <% } %>
+    <div id="comment-<%= rdata.CNO %>" class="col-9 col-md-10 col-lg-11">
+      <div class="comment-show">
+        <div class="comment-text mb-3"><%= rdata.content %></div>
+        <small class="d-block">
+           게시일: <span data-date-time="<%= rdata.day %>"></span> 
+        </small>
+        <% if(isAuthenticated){ %>
+        <small class="d-block">
+          <% if(rdata.id == session){ %>
+          |
+          <a href="javascript:void(0)" onclick="$('#comment-<%= rdata.CNO %>').addClass('comment-edit-enabled')" class="d-inline btnr">수정</a>
+          |
+          <a href="/comments/delete/<%= rdata.CNO %>/<%= data.MNO %>" class="d-inline btnr" >삭제</a>
+          <% } %>
+        </small>
+        <% } %>
+      </div>
+      <br>
+      <div class="comment-edit">
+        <%- include('./comment-form', {
+          comment: rdata,
+          data: data,
+        }); %>
+      </div>
+
+    </div>
+  </div>
+</div>
